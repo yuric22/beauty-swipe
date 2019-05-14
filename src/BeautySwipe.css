@@ -1,0 +1,60 @@
+div.beauty-swipe-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 100%; */
+  min-height: 400px;
+}
+
+div.beauty-swipe-wrapper > div {
+  margin: 0 20px;
+  /* align-self: flex-end; */
+}
+
+h1{
+  font-size: 20px;
+  font-weight: normal;
+  color: #2c2c2c;
+}
+
+h2{
+  font-size: 18px;
+  font-weight: normal;
+  color: #6c6c6c;
+  margin: 0;
+}
+
+div.card{
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 10px 10px;
+}
+
+div.card .card-img{
+  margin: 20px;
+}
+
+div.card .footer{
+  padding: 0 20px;
+  background-color: #E8E7FE;
+  height: 80px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+div.card .footer h1{
+  margin: 0;
+}
+
+div.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+div.buttons img {
+  width: 100px;
+  height: 100px;
+}
