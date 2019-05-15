@@ -1,5 +1,5 @@
 import React from 'react';
-// import WeightedList from 'js-weighted-list';
+import {connect} from 'react-redux';
 import Spinner from './Spinner';
 import { API } from './api.js';
 
@@ -8,9 +8,9 @@ import btnLike from './btn-like.svg';
 import counterDislike from './counter-dislike.svg';
 import counterLike from './counter-like.svg';
 
-import './BeautySwipe.css';
+import { getProductFilter, ProductFilters } from './actions';
 
-// const weightedBrands = new WeightedList(brands.map(b => [b, brands.length]));
+import './BeautySwipe.css';
 
 class BeautySwipe extends React.Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class BeautySwipe extends React.Component {
 
         this.state = {
             cards: [],
+            pastInteractionCards: [],
             currentCard: null,
             loading: true,
             error: false,
@@ -32,29 +33,33 @@ class BeautySwipe extends React.Component {
         this.getProducts();
     }
 
-    componentDidUpdate() {
-        // console.log(weightedBrands.weights);
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.productFilter !== this.props.productFilter){
+            this.getProducts(nextProps.productFilter);
+        }
     }
 
-    getProducts = () => {
+    getProducts = (filter) => {
+        const productFilter = filter || this.props.productFilter;
+
         this.setState({
             loading: true,
         });
 
-        API.PRODUCTS.GET(this.state.page).then((response) => {
-            // const {brands} = this.state;
-            // const filteredBrands = data.hits.filter(hit => !brands.includes(hit.brand)).map(hit  => hit.brand);
-            // console.log("iltreede", filteredBrands);
-            // const uniqueBrands = [...new Set(filteredBrands)];
-            // console.log("unique", uniqueBrands);
+        const params = [this.state.page];
 
+        if (productFilter && productFilter !== ProductFilters.ALL)
+            params.push(productFilter);
+
+        API.PRODUCTS.GET(...params).then((response) => {
             const data = response.data;
 
             if (data.hits && data.hits.length) {
+                const newProductsOnly = data.hits.filter(product => !this.state.pastInteractionCards.includes(product.id));
+
                 this.setState({
-                    cards: data.hits,
-                    // brands: brands.concat(uniqueBrands),
-                    currentCard: data.hits[0],
+                    cards: newProductsOnly,
+                    currentCard: newProductsOnly[0],
                     loading: false,
                 })
             }
@@ -68,24 +73,22 @@ class BeautySwipe extends React.Component {
     }
 
     handleLikeClick = () => {
-        // weightedBrands.addWeight(this.state.currentCard, 1);
-        this.getNextCard();
         this.setState({
             likes: this.state.likes + 1,
+            pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.id),
         });
+        this.getNextCard();
     }
 
     handleDislikeClick = () => {
-        // weightedBrands.addWeight(this.state.currentCard, -1);
-        this.getNextCard();
         this.setState({
             dislikes: this.state.dislikes + 1,
+            pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.id),
         });
+        this.getNextCard();
     }
 
     getNextCard = () => {
-        // const newCard = weightedBrands.peek();
-        // console.log("PEEK", newCard)
         const updatedCards = [].concat(this.state.cards);
         updatedCards.shift();
         this.setState({
@@ -131,4 +134,8 @@ class BeautySwipe extends React.Component {
     };
 }
 
-export default BeautySwipe;
+const mapStateProps = ({ productFilter }) => ({
+    productFilter: productFilter,
+  });
+
+export default connect(mapStateProps, { getProductFilter })(BeautySwipe);

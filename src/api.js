@@ -9,7 +9,16 @@ const URLS = {
     },
 }
 
-const getProducts = (page) => axios.get(URLS.PRODUCTS.GET, {params: {page: page}});
+const getProducts = (page, filter) => {
+    const params = {
+        page: page || 0,
+    };
+
+    if (filter)
+        params.subcategory = filter;
+
+    return axios.get(URLS.PRODUCTS.GET, {params: params})
+};
 
 const API = {
     PRODUCTS: {
