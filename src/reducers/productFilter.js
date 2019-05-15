@@ -7,13 +7,11 @@ const initialState = {
 const filter = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_PRODUCT_FILTER':
-            console.log("SET", action.filter)
             return {
                 ...state,
                 productFilter: action.filter,
             };
         default:
-            console.log("GET", state)
             return state;
     }
 }

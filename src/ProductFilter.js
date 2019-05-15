@@ -36,7 +36,7 @@ class ProductFilter extends Component {
 }
 
 const mapStateProps = ({ productFilter }) => ({
-        productFilter: productFilter,
-      });
+    productFilter: productFilter,
+});
 
 export default connect(mapStateProps, { setProductFilter })(ProductFilter);

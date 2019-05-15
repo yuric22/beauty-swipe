@@ -2,14 +2,11 @@ div.beauty-swipe-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 100%; */
   min-height: 400px;
 }
 
 div.beauty-swipe-wrapper > div {
-  /* margin: 0 10px; */
   flex: 0 0 400px;
-  /* align-self: flex-end; */
 }
 
 h1{
