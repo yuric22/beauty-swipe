@@ -91,3 +91,12 @@ div.interaction-buttons img {
   width: 100px;
   height: 100px;
 }
+
+div.interaction-buttons img:hover {
+  transform: translate(-1px, -1px);
+  cursor: pointer;
+}
+
+div.interaction-buttons img:active {
+  transform: translate(0px, 0px);
+}
