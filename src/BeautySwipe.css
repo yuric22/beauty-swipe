@@ -4,10 +4,12 @@ div.beauty-swipe-wrapper {
   justify-content: center;
   /* width: 100%; */
   min-height: 400px;
+  color:
 }
 
 div.beauty-swipe-wrapper > div {
-  margin: 0 20px;
+  /* margin: 0 10px; */
+  flex: 0 0 400px;
   /* align-self: flex-end; */
 }
 
@@ -24,20 +26,55 @@ h2{
   margin: 0;
 }
 
+div.interaction-count{
+  position: absolute;
+  top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 560px;
+}
+
+div.interaction-count > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 64px;
+}
+
+div.interaction-count > div > img{
+  width: 44px;
+  height: 34px;
+}
+
 div.card{
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: 10px 10px;
+  height: 520px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 100%;
 }
 
-div.card .card-img{
-  margin: 20px;
+div.card .body{
+  flex: 0 0 80%;
+  padding: 10px;
+  max-height: 72%;
+  display: flex;
+  justify-content: center;
+}
+
+div.card .body img{
+  max-width: 100%;
+  max-height: 100%;
 }
 
 div.card .footer{
   padding: 0 20px;
   background-color: #E8E7FE;
-  height: 80px;
+  height: 28%;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -48,13 +85,13 @@ div.card .footer h1{
   margin: 0;
 }
 
-div.buttons {
+div.interaction-buttons {
   display: flex;
   justify-content: space-evenly;
-  padding: 20px;
+  margin-top: 20px;
 }
 
-div.buttons img {
+div.interaction-buttons img {
   width: 100px;
   height: 100px;
 }
