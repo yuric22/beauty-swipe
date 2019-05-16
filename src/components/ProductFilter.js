@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {RadioGroup, ReversedRadioButton} from 'react-radio-buttons';
 import {connect} from 'react-redux';
 
-import {setProductFilter, ProductFilters} from './actions';
+import {setProductFilter, ProductFilters} from '../actions';
 
 import './ProductFilter.css';
 

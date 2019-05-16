@@ -1,6 +1,6 @@
 import React from 'react';
-import BeautySwipe from './BeautySwipe';
-import ProductFilter from './ProductFilter';
+import BeautySwipe from './components/BeautySwipe';
+import ProductFilter from './components/ProductFilter';
 
 import './App.css';
 

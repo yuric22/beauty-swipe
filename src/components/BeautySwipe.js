@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Spinner from './Spinner';
-import { API } from './api.js';
+import { API } from '../api.js';
 
 import btnDislike from './btn-dislike.svg';
 import btnLike from './btn-like.svg';
 import counterDislike from './counter-dislike.svg';
 import counterLike from './counter-like.svg';
 
-import { getProductFilter, ProductFilters } from './actions';
+import { getProductFilter, ProductFilters } from '../actions';
 
 import './BeautySwipe.css';
 
