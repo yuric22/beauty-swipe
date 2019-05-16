@@ -1,0 +1,19 @@
+div.interaction-count{
+  position: absolute;
+  top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 560px;
+}
+
+div.interaction-count > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 64px;
+}
+
+div.interaction-count > div > img{
+  width: 44px;
+  height: 34px;
+}

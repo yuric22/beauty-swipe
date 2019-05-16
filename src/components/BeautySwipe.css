@@ -22,26 +22,6 @@ h2{
   margin: 0;
 }
 
-div.interaction-count{
-  position: absolute;
-  top: 10px;
-  display: flex;
-  justify-content: space-between;
-  width: 560px;
-}
-
-div.interaction-count > div{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 0 0 64px;
-}
-
-div.interaction-count > div > img{
-  width: 44px;
-  height: 34px;
-}
-
 div.card{
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

@@ -1,14 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Spinner from './Spinner';
+import InteractionCounter from './InteractionCounter';
 import { API } from '../api.js';
 
 import btnDislike from './btn-dislike.svg';
 import btnLike from './btn-like.svg';
-import counterDislike from './counter-dislike.svg';
-import counterLike from './counter-like.svg';
 
-import { getProductFilter, ProductFilters } from '../actions';
+import { ProductFilters, incrementDislike, incrementLike } from '../actions';
 
 import './BeautySwipe.css';
 
@@ -24,8 +23,6 @@ class BeautySwipe extends React.Component {
             error: false,
             brands: [],
             page: 0,
-            likes: 0,
-            dislikes: 0,
         }
     }
 
@@ -73,16 +70,16 @@ class BeautySwipe extends React.Component {
     }
 
     handleLikeClick = () => {
+        this.props.incrementLike();
         this.setState({
-            likes: this.state.likes + 1,
             pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.productId),
         });
         this.getNextCard();
     }
 
     handleDislikeClick = () => {
+        this.props.incrementDislike();
         this.setState({
-            dislikes: this.state.dislikes + 1,
             pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.productId),
         });
         this.getNextCard();
@@ -106,10 +103,7 @@ class BeautySwipe extends React.Component {
     render() {
         return (
             <div className="beauty-swipe-wrapper">
-                <div className="interaction-count">
-                    <div><img className="counter" src={counterDislike} alt="dislike counter" /> {this.state.dislikes}</div>
-                    <div>{this.state.likes} <img className="counter" src={counterLike} alt="like counter" /></div>
-                </div>
+                <InteractionCounter />
                 {this.state.loading ?
                     <Spinner />
                 :
@@ -134,8 +128,8 @@ class BeautySwipe extends React.Component {
     };
 }
 
-const mapStateProps = ({ productFilter }) => ({
-    productFilter: productFilter,
-  });
+const mapStateProps = ({ filter }) => ({
+    productFilter: filter.productFilter,
+});
 
-export default connect(mapStateProps, { getProductFilter })(BeautySwipe);
+export default connect(mapStateProps, { incrementDislike, incrementLike })(BeautySwipe);
