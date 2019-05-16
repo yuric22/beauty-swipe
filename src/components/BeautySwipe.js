@@ -55,7 +55,7 @@ class BeautySwipe extends React.Component {
             const data = response.data;
 
             if (data.hits && data.hits.length) {
-                const newProductsOnly = data.hits.filter(product => !this.state.pastInteractionCards.includes(product.id));
+                const newProductsOnly = data.hits.filter(product => !this.state.pastInteractionCards.includes(product.productId));
 
                 this.setState({
                     cards: newProductsOnly,
@@ -75,7 +75,7 @@ class BeautySwipe extends React.Component {
     handleLikeClick = () => {
         this.setState({
             likes: this.state.likes + 1,
-            pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.id),
+            pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.productId),
         });
         this.getNextCard();
     }
@@ -83,7 +83,7 @@ class BeautySwipe extends React.Component {
     handleDislikeClick = () => {
         this.setState({
             dislikes: this.state.dislikes + 1,
-            pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.id),
+            pastInteractionCards: [].concat(this.state.pastInteractionCards).concat(this.state.currentCard.productId),
         });
         this.getNextCard();
     }
